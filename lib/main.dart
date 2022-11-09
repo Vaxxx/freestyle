@@ -1,35 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:freestyle/pages/splash.dart';
+import 'package:freestyle/bindings/homebinding.dart';
+import 'package:freestyle/pages/login.dart';
+import 'package:freestyle/pages/notifications.dart';
+import 'package:freestyle/pages/register.dart';
+import 'package:freestyle/pages/settings.dart';
+import 'package:freestyle/pages/user/activities.dart';
+import 'package:freestyle/pages/user/dashboard.dart';
+import 'package:freestyle/pages/user/messages.dart';
+import 'package:freestyle/pages/user/onboarding.dart';
+import 'package:freestyle/pages/user/profile.dart';
+import 'package:freestyle/pages/user/stage.dart';
 import 'package:get/get.dart';
 
+import 'bindings/boarding_binding.dart';
+import 'bindings/user_binding.dart';
+
 void main() {
-  runApp(const GetMaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: SplashScreen(),
+  runApp(GetMaterialApp(
+    initialBinding: UserBindings(),
+    initialRoute: '/',
+    getPages: [
+      GetPage(name: '/', page: () => Login()),
+      GetPage(name: '/login', page: () => Login()),
+      GetPage(name: '/register', page: () => const Register()),
+      GetPage(
+          name: '/dashboard', page: () => Dashboard(), binding: HomeBindings()),
+      GetPage(name: '/profile', page: () => Profile()),
+      GetPage(
+          name: '/onBoarding',
+          page: () => OnBoarding(),
+          binding: BoardingBindings()),
+      GetPage(name: '/settings', page: () => const Settings()),
+      GetPage(name: '/activities', page: () => const Activities()),
+      GetPage(name: '/messages', page: () => const Messages()),
+      GetPage(name: '/stage', page: () => const Stage()),
+      GetPage(name: '/notifications', page: () => const Notifications()),
+    ],
   ));
 }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-//
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Flutter Demo',
-//       theme: ThemeData(
-//         // This is the theme of your application.
-//         //
-//         // Try running your application with "flutter run". You'll see the
-//         // application has a blue toolbar. Then, without quitting the app, try
-//         // changing the primarySwatch below to Colors.green and then invoke
-//         // "hot reload" (press "r" in the console where you ran "flutter run",
-//         // or simply save your changes to "hot reload" in a Flutter IDE).
-//         // Notice that the counter didn't reset back to zero; the application
-//         // is not restarted.
-//         primarySwatch: Colors.blue,
-//       ),
-//       home: const SplashScreen(),
-//     );
-//   }
-// }

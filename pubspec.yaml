@@ -42,6 +42,12 @@ dev_dependencies:
     sdk: flutter
   get: ^4.6.5
   flutter_overboard: ^3.1.1
+  country_state_city_picker: ^1.2.8
+  getwidget: ^3.0.1
+  file_picker: ^4.6.1
+  percent_indicator: ^4.0.1
+  dashboard: ^0.0.2+4
+  http: ^0.13.5
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -79,11 +85,13 @@ flutter:
   fonts:
     - family: Roboto
       fonts:
-        - asset: assets/fonts/Roboto-Black.ttf
-        - asset: assets/fonts/Roboto-Bold.ttf
-        - asset: assets/fonts/Roboto-Italic.ttf
-        - asset: assets/fonts/Roboto-Medium.ttf
-        - asset: assets/fonts/Roboto-Thin.ttf
+        - asset: assets/fonts/Roboto-Medium.ttf 
+    - family: Tangerine
+      fonts:
+        - asset: assets/fonts/Tangerine-Bold.ttf
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/OpenSans-Bold.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

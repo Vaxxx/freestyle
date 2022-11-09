@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../utils/dimensions.dart';
 import 'login.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -13,24 +14,31 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+
     Future.delayed(const Duration(seconds: 5)).then((_) {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => const Login(),
+        builder: (context) => Login(),
       ));
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Expanded(
-        child: AnimatedContainer(
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("assets/images/splash.jpg"))),
-          curve: Curves.bounceInOut,
-          duration: const Duration(seconds: 5),
-        ),
+    // print('......................................................');
+    // print("height ${Get.context!.height}");
+    // print("width ${Get.context!.width}");
+    // print("width ${ MediaQuery.of(context).size.height}");
+    // print("height: ${Dimensions.SCREEN_HEIGHT}");
+    // print("width: ${Dimensions.SCREEN_WIDTH}");
+    // print("height60: ${Dimensions.height60}");
+    return Scaffold(
+      backgroundColor: Dimensions.blackColor,
+      body: AnimatedContainer(
+        decoration: const BoxDecoration(
+            image:
+                DecorationImage(image: AssetImage("assets/images/splash.jpg"))),
+        curve: Curves.bounceInOut,
+        duration: const Duration(seconds: 5),
       ),
     );
   }
