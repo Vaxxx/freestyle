@@ -1,9 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:freestyle/controller/boarding_controller.dart';
 import 'package:freestyle/utils/dimensions.dart';
+import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 
 class PageWidget {
+  final BoardingController boardingController = Get.put(BoardingController());
+
   static textFormFieldWidget(
       {required String valLabel,
       required String hintText,
@@ -12,12 +16,16 @@ class PageWidget {
       required Color borderColor,
       required Color fillColor,
       required Color textColor,
+      TextInputType? textInput,
       TextEditingController? controller,
+      Function(String?)? validator,
       required bool isObsecure}) {
     return TextFormField(
       // controller: titleController,
-      validator: (val) => val == '' ? valLabel : null,
+      validator: (String? value) => validator!(value),
       controller: controller,
+      obscureText: isObsecure,
+      keyboardType: textInput,
       style: TextStyle(fontSize: Dimensions.height10, color: textColor),
       decoration: InputDecoration(
           labelText: hintText,
@@ -45,7 +53,7 @@ class PageWidget {
             borderSide: BorderSide(color: borderColor),
           ),
           contentPadding: EdgeInsets.symmetric(
-              horizontal: Dimensions.width20, vertical: Dimensions.height5),
+              horizontal: Dimensions.width20, vertical: Dimensions.height30),
           fillColor: fillColor,
           filled: true),
     );
@@ -93,12 +101,16 @@ class PageWidget {
     );
   }
 
-  static dropdownWidget({required List<String> items, required String title}) {
+  static dropdownWidget(
+      {required List<String> items,
+      required String title,
+      required List<dynamic>  strings}) {
     return GFMultiSelect(
       items: items,
       onSelect: (value) {
         if (kDebugMode) {
           print('selected $value ');
+          strings.add(value);
         }
       },
       dropdownTitleTileText: title,
@@ -168,6 +180,7 @@ class PageWidget {
       required Color borderColor,
       required Color fillColor,
       required Color textColor,
+      TextEditingController? controller,
       required bool isObsecure,
       int? maxLine}) {
     return TextField(
@@ -176,6 +189,7 @@ class PageWidget {
       style: TextStyle(fontSize: Dimensions.height10, color: textColor),
       obscureText: isObsecure == true ? true : false,
       maxLines: maxLine,
+      controller: controller,
       decoration: InputDecoration(
           labelText: hintText,
           labelStyle:
@@ -220,4 +234,38 @@ class PageWidget {
       color: color,
     );
   } //iconButtonWidget
+
+  static successSnackbarWidget({
+    required String title,
+    required String msg,
+    required Icon icon,
+  }) {
+    return Get.snackbar(title, msg,
+        icon: icon,
+        snackPosition: SnackPosition.BOTTOM,
+        colorText: Dimensions.deepGreyColor,
+        backgroundColor: Dimensions.whiteColor,
+        duration: const Duration(seconds: 4),
+        showProgressIndicator: true,
+        progressIndicatorBackgroundColor: Dimensions.deepGreenColor,
+        progressIndicatorValueColor:
+            const AlwaysStoppedAnimation<Color>(Dimensions.lightGreenColor));
+  } //successSnackbarWidget
+
+  static errorSnackbarWidget({
+    required String title,
+    required String msg,
+    required Icon icon,
+  }) {
+    return Get.snackbar(title, msg,
+        icon: icon,
+        snackPosition: SnackPosition.BOTTOM,
+        colorText: Dimensions.redColor,
+        backgroundColor: Dimensions.whiteColor,
+        duration: const Duration(seconds: 4),
+        showProgressIndicator: true,
+        progressIndicatorBackgroundColor: Dimensions.redColor,
+        progressIndicatorValueColor:
+            const AlwaysStoppedAnimation<Color>(Dimensions.lightRedColor));
+  } //errorSnackbarWidget
 }

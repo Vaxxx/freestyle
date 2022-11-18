@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:freestyle/pages/user/home_page.dart';
 
 import '../utils/dimensions.dart';
-import 'login.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     Future.delayed(const Duration(seconds: 5)).then((_) {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => Login(),
+        builder: (context) => const HomePage(),
       ));
     });
   }
@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
             image:
                 DecorationImage(image: AssetImage("assets/images/splash.jpg"))),
         curve: Curves.bounceInOut,
-        duration: const Duration(seconds: 5),
+        duration: const Duration(seconds: 2),
       ),
     );
   }

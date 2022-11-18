@@ -27,6 +27,17 @@ class User {
     password = password;
   }
 
+  User.register(
+      {required this.stagename,
+      required this.email,
+      required this.age,
+      required this.password}) {
+    stagename = stagename;
+    email = email;
+    age = age;
+    password = password;
+  }
+
   int? id;
   String? stagename;
   String? age;
@@ -64,6 +75,10 @@ class Role {
     required this.id,
     required this.name,
   });
+
+  Role.add({required this.name}) {
+    this.name = name;
+  }
 
   int? id;
   String? name;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../utils/dimensions.dart';
@@ -9,6 +10,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //ensure its only in portrait mode
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
     return Scaffold(
       backgroundColor: Dimensions.backGroundColor,
       body: Stack(
@@ -48,7 +52,7 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                         Expanded(
-                          flex: 4,
+                          flex: 2,
                           child: Center(
                             child: Padding(
                               padding:
@@ -69,36 +73,42 @@ class HomePage extends StatelessWidget {
                                       fontSize: Dimensions.height20,
                                       fontWeight: FontWeight.w900,
                                       textColor: Dimensions.whiteColor),
-                                  Container(
-                                    padding: EdgeInsets.only(
-                                        top: Dimensions.height40),
-                                    child: PageWidget.materialButton(
-                                      bgColor: Dimensions.lightBlackColor,
-                                      onPressed: login,
-                                      buttonText: "LOGIN",
-                                      textColor: Dimensions.whiteColor,
-                                    ),
-                                  ),
-                                  SizedBox(height: Dimensions.height10),
-                                  Container(
-                                    padding: EdgeInsets.only(
-                                        top: Dimensions.height40),
-                                    child: PageWidget.materialButton(
-                                      bgColor: Dimensions.lightBlackColor,
-                                      onPressed: register,
-                                      buttonText: "REGISTER",
-                                      textColor: Dimensions.whiteColor,
-                                    ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.only(
+                                            top: Dimensions.height20),
+                                        child: PageWidget.materialButton(
+                                          bgColor: Dimensions.backGroundColor,
+                                          onPressed: login,
+                                          buttonText: "LOGIN",
+                                          textColor: Dimensions.whiteColor,
+                                        ),
+                                      ),
+                                      SizedBox(width: Dimensions.width20),
+                                      Container(
+                                        padding: EdgeInsets.only(
+                                            top: Dimensions.height20),
+                                        child: PageWidget.materialButton(
+                                          bgColor: Dimensions.backGroundColor,
+                                          onPressed: register,
+                                          buttonText: "REGISTER",
+                                          textColor: Dimensions.whiteColor,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                   SizedBox(height: Dimensions.height5),
                                   Container(
                                     padding: EdgeInsets.symmetric(
-                                        vertical: Dimensions.height10),
+                                        vertical: Dimensions.height5),
                                     child: PageWidget.textWidget(
                                         textLabel: "OR",
                                         fontFamily: 'OpenSans',
-                                        fontSize: Dimensions.height25,
-                                        fontWeight: FontWeight.w900,
+                                        fontSize: Dimensions.height15,
+                                        fontWeight: FontWeight.w700,
                                         textColor: Dimensions.whiteColor),
                                   ),
                                   SizedBox(height: Dimensions.height5),
@@ -108,33 +118,28 @@ class HomePage extends StatelessWidget {
                                     children: [
                                       IconButton(
                                           color: Dimensions.whiteColor,
-                                          iconSize: Dimensions.height30,
+                                          iconSize: Dimensions.height20,
                                           onPressed: facebook,
                                           icon: const Icon(Icons.facebook)),
                                       IconButton(
                                           color: Dimensions.whiteColor,
-                                          iconSize: Dimensions.height30,
+                                          iconSize: Dimensions.height20,
                                           onPressed: twitter,
                                           icon: const Icon(
                                               Icons.border_inner_rounded)),
                                       IconButton(
                                           color: Dimensions.whiteColor,
-                                          iconSize: Dimensions.height30,
+                                          iconSize: Dimensions.height20,
                                           onPressed: facebook,
                                           icon: const Icon(Icons.g_mobiledata)),
                                     ],
                                   ),
-                                  SizedBox(height: Dimensions.height5),
-                                  Container(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: Dimensions.height5),
-                                    child: PageWidget.materialButton(
-                                      bgColor: Dimensions.backGroundColor,
-                                      onPressed: tac,
-                                      buttonText: "TERMS AND CONDITIONS",
-                                      textColor: Dimensions.whiteColor,
-                                    ),
-                                  )
+                                  PageWidget.materialButton(
+                                    bgColor: Dimensions.backGroundColor,
+                                    onPressed: tac,
+                                    buttonText: "TERMS AND CONDITIONS",
+                                    textColor: Dimensions.whiteColor,
+                                  ),
                                 ],
                               ),
                             ),

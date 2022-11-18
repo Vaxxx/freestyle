@@ -1,10 +1,9 @@
 import 'package:country_state_city_picker/country_state_city_picker.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:freestyle/controller/boarding_controller.dart';
 import 'package:freestyle/pages/user/dashboard.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../utils/dimensions.dart';
 import '../../utils/widgets.dart';
@@ -12,15 +11,84 @@ import '../../utils/widgets.dart';
 class OnBoarding extends StatelessWidget {
   OnBoarding({Key? key}) : super(key: key);
   final BoardingController c = Get.put(BoardingController());
+  final formKey = GlobalKey<FormState>();
+
+  //texteditingcontrollers
+  final TextEditingController firstnameController = TextEditingController();
+  final TextEditingController lastnameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController cityController = TextEditingController();
+  final TextEditingController countryController = TextEditingController();
+  final TextEditingController genreController = TextEditingController();
+  final TextEditingController disciplineController = TextEditingController();
+  final TextEditingController hobbyController = TextEditingController();
+  final TextEditingController bioController = TextEditingController();
+  final TextEditingController Controller = TextEditingController();
+  final TextEditingController questionController = TextEditingController();
+  final TextEditingController answerController = TextEditingController();
 
   String musicTitle = 'My Favorite Music Genre(s)';
   String disciplineTitle = "I am more of a...";
   String jobTitle = "I am a...";
   String securityQuestionTitle = "Select Security Question";
 
+  addProfile() {
+    //get genre value
+    for (var genre in c.genreValue) {
+      if (genre.contains(0)) {
+        debugPrint('contains 0 ');
+        c.array.add('RNB');
+      }
+      if (genre.contains(1)) {
+        debugPrint('contains 1 ');
+        c.array.add('Afro Pop');
+      }
+      if (genre.contains(2)) {
+        debugPrint('contains2 ');
+        c.array.add('High Life');
+      }
+      if (genre.contains(3)) {
+        debugPrint('contains 3 ');
+        c.array.add('High Pop');
+      }
+      if (genre.contains(4)) {
+        debugPrint('contains 4 ');
+        c.array.add('Ampiano');
+      }
+      if (genre.contains(5)) {
+        debugPrint('contains 5 ');
+        c.array.add('Reggae');
+      }
+      if (genre.contains(6)) {
+        debugPrint('contains 6 ');
+        c.array.add('Others');
+      }
+    } //end for
+
+    var set = <String>{};
+    List uniqueList = c.array.where((arr) => set.add(arr)).toList();
+    debugPrint("UniqueList: $uniqueList");
+
+    debugPrint(
+        "Firstname: ${firstnameController.text.trim()} --- LastName: ${lastnameController.text.trim()}");
+    debugPrint(
+        "Phone: ${phoneController.text.trim()} --- Bio: ${bioController.text.trim()}");
+
+    debugPrint("Array: ${c.array}");
+    debugPrint("music: ${c.genreValue} --- Bio: ${bioController.text.trim()}");
+    debugPrint("discipline: ${c.disciplineValues} --- job: ${c.jobValues}");
+    debugPrint(
+        "icty: ${c.cityValue.value} --- country: ${c.countryValue.value}");
+
+    debugPrint(
+        "profile Picture: ${c.selectedPicturePath.value} --- seurity question: ${c.securityValues}");
+    debugPrint(
+        "Banner Picture: ${c.selectedBannerPath.value} --- seurity answer: ${answerController.text.trim()}");
+  } //addProfile
+
   // List of items in our dropdown menu
 
-  var musicList = [
+  var genreList = [
     'RNB',
     'Afro Pop',
     'High Life',
@@ -60,19 +128,20 @@ class OnBoarding extends StatelessWidget {
   ];
 
   List<Step> stepList() => [
+        //page 1
         Step(
-            state: c.activeStepIndex.value <= 0
-                ? StepState.editing
-                : StepState.complete,
-            isActive: c.activeStepIndex.value >= 0,
-            title: PageWidget.textWidget(
-                textLabel: "1",
-                fontFamily: "OpenSans",
-                fontSize: 40,
-                fontWeight: FontWeight.w900,
-                textColor: Dimensions.blackColor),
-            content: Center(
-                child: Column(
+          state: c.activeStepIndex.value <= 0
+              ? StepState.editing
+              : StepState.complete,
+          isActive: c.activeStepIndex.value >= 0,
+          title: PageWidget.textWidget(
+              textLabel: "1",
+              fontFamily: "OpenSans",
+              fontSize: 40,
+              fontWeight: FontWeight.w900,
+              textColor: Dimensions.blackColor),
+          content: Center(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 PageWidget.textWidget(
@@ -85,6 +154,7 @@ class OnBoarding extends StatelessWidget {
                 PageWidget.textFormFieldWidget(
                     valLabel: "First Name",
                     hintText: "First Name...",
+                    controller: firstnameController,
                     prefixIcon: Icons.person_outline_outlined,
                     borderColor: Dimensions.greyColor,
                     fillColor: Dimensions.whiteColor,
@@ -93,23 +163,25 @@ class OnBoarding extends StatelessWidget {
                 PageWidget.textFormFieldWidget(
                     valLabel: "Last Name",
                     hintText: "Last Name",
+                    controller: lastnameController,
                     prefixIcon: Icons.person_outline,
                     borderColor: Dimensions.greyColor,
                     fillColor: Dimensions.whiteColor,
                     textColor: Dimensions.deepGreyColor,
                     isObsecure: false),
-                PageWidget.textFormFieldWidget(
-                    valLabel: "Age",
-                    hintText: "Age...",
-                    prefixIcon: Icons.tag,
-                    borderColor: Dimensions.greyColor,
-                    fillColor: Dimensions.whiteColor,
-                    textColor: Dimensions.deepGreyColor,
-                    isObsecure: false),
+                // PageWidget.textFormFieldWidget(
+                //     valLabel: "Age",
+                //     hintText: "Age...",
+                //     prefixIcon: Icons.tag,
+                //     borderColor: Dimensions.greyColor,
+                //     fillColor: Dimensions.whiteColor,
+                //     textColor: Dimensions.deepGreyColor,
+                //     isObsecure: false),
                 PageWidget.textFormFieldWidget(
                     valLabel: "Phone Number",
                     hintText: "Phone Number",
                     prefixIcon: Icons.phone,
+                    controller: phoneController,
                     borderColor: Dimensions.greyColor,
                     fillColor: Dimensions.whiteColor,
                     textColor: Dimensions.deepGreyColor,
@@ -124,18 +196,21 @@ class OnBoarding extends StatelessWidget {
                     // style: TextStyle(color: Colors.red),
                     onCountryChanged: (value) {
                       c.countryValue.value = value;
+                      debugPrint("Country value: ${c.countryValue.value}");
                     },
                     onStateChanged: (value) {
                       c.stateValue.value = value;
                     },
                     onCityChanged: (value) {
                       c.cityValue.value = value;
+                      debugPrint("City Value: ${c.cityValue.value}");
                     },
                   ),
                 ),
               ],
-            ))),
-
+            ),
+          ),
+        ),
         //page 2
         Step(
             state: c.activeStepIndex.value <= 1
@@ -174,10 +249,15 @@ class OnBoarding extends StatelessWidget {
                       textColor: Dimensions.blackColor),
                   SizedBox(height: Dimensions.height10),
                   PageWidget.dropdownWidget(
-                      items: musicList, title: musicTitle),
+                      items: genreList,
+                      title: musicTitle,
+                      strings: c.genreValue),
                   PageWidget.dropdownWidget(
-                      items: disciplineList, title: disciplineTitle),
-                  PageWidget.dropdownWidget(items: jobList, title: jobTitle),
+                      items: disciplineList,
+                      title: disciplineTitle,
+                      strings: c.disciplineValues),
+                  PageWidget.dropdownWidget(
+                      items: jobList, title: jobTitle, strings: c.jobValues),
                 ],
               ),
             ))),
@@ -224,6 +304,7 @@ class OnBoarding extends StatelessWidget {
                       hintText: "Short & exciting bio about you",
                       prefixIcon: Icons.info_outlined,
                       borderColor: Dimensions.blackColor,
+                      controller: bioController,
                       fillColor: Dimensions.whiteColor,
                       textColor: Dimensions.blackColor,
                       isObsecure: false,
@@ -283,11 +364,13 @@ class OnBoarding extends StatelessWidget {
                   SizedBox(height: Dimensions.height10),
                   PageWidget.dropdownWidget(
                       items: securityQuestionList,
-                      title: securityQuestionTitle),
+                      title: securityQuestionTitle,
+                      strings: c.securityValues),
                   SizedBox(height: Dimensions.height10),
                   PageWidget.textFormFieldWidget(
                       valLabel: "Enter Security Question Answer",
                       hintText: "Enter Security Question Answer",
+                      controller: answerController,
                       prefixIcon: Icons.question_answer,
                       borderColor: Dimensions.greyColor,
                       fillColor: Dimensions.whiteColor,
@@ -337,39 +420,44 @@ class OnBoarding extends StatelessWidget {
             decoration: BoxDecoration(
                 color: Colors.black54, borderRadius: BorderRadius.circular(17)),
             child: Obx(() {
-              return Stepper(
-                controlsBuilder: (BuildContext context, ControlsDetails ctx) {
-                  return Container(
-                    padding: EdgeInsets.only(top: Dimensions.height20),
-                    child: Row(
-                      children: <Widget>[
-                        PageWidget.materialButton(
-                            bgColor: Dimensions.greyColor,
-                            onPressed: onStepCancel,
-                            buttonText: 'CANCEL',
-                            textColor: Dimensions.blackColor),
-                        SizedBox(
-                          width: Dimensions.width20,
-                        ),
-                        PageWidget.materialButton(
-                            bgColor: Dimensions.greyColor,
-                            onPressed: onStepContinue,
-                            buttonText: "NEXT",
-                            textColor: Dimensions.blackColor),
-                      ],
-                    ),
-                  );
-                },
-                type: StepperType.horizontal,
-                currentStep: c.activeStepIndex.value,
-                steps: stepList(),
-                onStepContinue: () {
-                  onStepContinue();
-                },
-                //onStepContinue
-                onStepCancel: () {
-                  onStepCancel();
-                },
+              return Container(
+                padding: const EdgeInsets.all(3),
+                color: Dimensions.backGroundColor,
+                child: Stepper(
+                  controlsBuilder: (BuildContext context, ControlsDetails ctx) {
+                    return Container(
+                      padding: EdgeInsets.only(top: Dimensions.height20),
+                      child: Row(
+                        children: <Widget>[
+                          PageWidget.materialButton(
+                              bgColor: Dimensions.greyColor,
+                              onPressed: onStepCancel,
+                              buttonText: 'CANCEL',
+                              textColor: Dimensions.blackColor),
+                          SizedBox(
+                            width: Dimensions.width20,
+                          ),
+                          PageWidget.materialButton(
+                              bgColor: Dimensions.greyColor,
+                              onPressed: onStepContinue,
+                              buttonText: "NEXT",
+                              textColor: Dimensions.blackColor),
+                        ],
+                      ),
+                    );
+                  },
+                  type: StepperType.horizontal,
+                  currentStep: c.activeStepIndex.value,
+
+                  steps: stepList(),
+                  onStepContinue: () {
+                    onStepContinue();
+                  },
+                  //onStepContinue
+                  onStepCancel: () {
+                    onStepCancel();
+                  },
+                ),
               );
             }),
           )
@@ -378,7 +466,7 @@ class OnBoarding extends StatelessWidget {
 
   void onStepContinue() {
     bool isLastStep = (c.activeStepIndex.value == stepList().length - 1);
-    // if (c.activeStepIndex.value < (stepList().length - 1)) { }
+    //if (c.activeStepIndex.value < (stepList().length - 1)) {}
     if (isLastStep) {
       //the last page information
       Get.snackbar("Last", "This is the last Page");
@@ -401,18 +489,24 @@ class OnBoarding extends StatelessWidget {
   }
 
   Future uploadProfilePicture() async {
-    final result = await FilePicker.platform.pickFiles();
-    if (result == null) return;
-    c.profilePictureFile = result.files.first as Rx<PlatformFile>;
+    c.getPictureImage(ImageSource.gallery);
+    // final result = await FilePicker.platform.pickFiles();
+    // if (result == null) return;
+    // c.profilePictureFile = result.files.first as Rx<PlatformFile>;
+    // debugPrint("C.ProfilePictureFile=> ${c.profilePictureFile}");
   }
 
   Future uploadProfileBanner() async {
-    final result = await FilePicker.platform.pickFiles();
-    if (result == null) return;
-    c.profileBannerFile = result.files.first as Rx<PlatformFile>;
+    c.getBannerImage(ImageSource.gallery);
+    // final result = await FilePicker.platform.pickFiles();
+    // if (result == null) return;
+    // c.profileBannerFile = result.files.first as Rx<PlatformFile>;
+    // debugPrint("C.profileBannerFile => ${c.profileBannerFile}");
   }
 
-  void onboard() {
+  onboard() {
+    debugPrint("I want it so bad");
+    addProfile();
     Get.snackbar("Submit", "Your onboarding process was successful");
   }
 }

@@ -46,7 +46,9 @@ dev_dependencies:
   getwidget: ^3.0.1
   file_picker: ^4.6.1
   percent_indicator: ^4.0.1
+  image_picker: ^0.8.3
   dashboard: ^0.0.2+4
+  get_storage: ^2.0.3
   http: ^0.13.5
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:freestyle/controller/home_controller.dart';
 import 'package:freestyle/pages/user/home_page.dart';
@@ -7,6 +6,7 @@ import 'package:freestyle/pages/user/messages.dart';
 import 'package:freestyle/utils/dimensions.dart';
 import 'package:freestyle/utils/widgets.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 import '../../utils/nav_drawer.dart';
@@ -27,6 +27,16 @@ class Dashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //get values from sharedPreferences(getx)
+
+    final dataValue = GetStorage(); //initialize getStorage
+
+    //read values
+    if (dataValue.read('email') != null) {
+      var _storedEmail = dataValue.read('email');
+      debugPrint("Storewd Email: $_storedEmail");
+    }
+
     return Scaffold(
       backgroundColor: Dimensions.blackColor,
       drawer: const NavDrawer(),
@@ -104,7 +114,7 @@ class Dashboard extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: Dimensions.height60),
+                padding: EdgeInsets.symmetric(vertical: Dimensions.height20),
                 child: CircularPercentIndicator(
                   radius: Dimensions.height150,
                   animation: true,

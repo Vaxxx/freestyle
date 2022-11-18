@@ -5,12 +5,15 @@ class Dimensions {
   //colors
   static const backGroundColor = Color(0xFF202020);
   static const kPrimaryColor = Color(0xFFFFBD73);
-  static const greyColor = Color(0xFFbab6b6);
+  static const greyColor = Color(0xFF9E9E9E);
   static const whiteColor = Color(0xFFFFFFFF);
-  static const deepGreyColor = Color(0xFF665151);
-  static const lightBlackColor = Color(0xFF423737);
+  static const deepGreyColor = Color(0xFF424242);
+  static const lightBlackColor = Color(0xFF757575);
   static const blackColor = Color(0xFF000000);
-  static const redColor = Color(0xFFFF3333);
+  static const redColor = Color(0xFFC62828);
+  static const lightRedColor = Color(0xFFE57373);
+  static const deepGreenColor = Color(0xFF00695C);
+  static const lightGreenColor = Color(0xFF80CBC4);
   static final greenOpacityColor = Colors.green.withOpacity(0.5);
 
   //dimensions
@@ -25,6 +28,7 @@ class Dimensions {
   static double height20 = SCREEN_HEIGHT / (SCREEN_HEIGHT / 20);
   static double height25 = SCREEN_HEIGHT / (SCREEN_HEIGHT / 25);
   static double height30 = SCREEN_HEIGHT / (SCREEN_HEIGHT / 30);
+  static double height35 = SCREEN_HEIGHT / (SCREEN_HEIGHT / 35);
   static double height40 = SCREEN_HEIGHT / (SCREEN_HEIGHT / 40);
   static double height50 = SCREEN_HEIGHT / (SCREEN_HEIGHT / 50);
   static double height60 = SCREEN_HEIGHT / (SCREEN_HEIGHT / 60);
@@ -42,4 +46,9 @@ class Dimensions {
   static double width30 = SCREEN_WIDTH / (SCREEN_WIDTH / 30);
   static double width40 = SCREEN_WIDTH / (SCREEN_WIDTH / 40);
   static double width50 = SCREEN_WIDTH / (SCREEN_WIDTH / 50);
+  static double width100 = SCREEN_WIDTH / (SCREEN_WIDTH / 100);
+  static double width150 = SCREEN_WIDTH / (SCREEN_WIDTH / 150);
+  static double width200 = SCREEN_WIDTH / (SCREEN_WIDTH / 200);
+  static double width250 = SCREEN_WIDTH / (SCREEN_WIDTH / 250);
+  static double width300 = SCREEN_WIDTH / (SCREEN_WIDTH / 300);
 }
