@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:freestyle/controller/user_controller.dart';
 import 'package:freestyle/model/user.dart';
+import 'package:freestyle/utils/widgets.dart';
 import 'package:get/get.dart';
 
 import '../utils/dimensions.dart';
-import '../utils/widgets.dart';
 
 class Login extends StatelessWidget {
   Login({Key? key}) : super(key: key);
@@ -56,19 +56,19 @@ class Login extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Expanded(
-                flex: 4,
+                flex: 3,
                 child: Center(
                   child: Padding(
                     padding: EdgeInsets.only(top: Dimensions.height30),
                     child: Column(
                       children: [
-                        PageWidget.textWidget(
-                            textLabel: "Freestyle League",
-                            fontFamily: "OpenSans",
-                            fontSize: Dimensions.height40,
-                            fontWeight: FontWeight.w900,
-                            textColor: Dimensions.whiteColor),
-                        // Image.asset("assets/images/miniLogo.jpg"),
+                        // PageWidget.textWidget(
+                        //     textLabel: "Freestyle League",
+                        //     fontFamily: "OpenSans",
+                        //     fontSize: Dimensions.height40,
+                        //     fontWeight: FontWeight.w800,
+                        //     textColor: Dimensions.lightGreyColor),
+                        //Image.asset("assets/images/miniLogo.jpg"),
                         Container(
                           padding: EdgeInsets.only(top: Dimensions.height5),
                           child: PageWidget.textWidget(
@@ -76,7 +76,7 @@ class Login extends StatelessWidget {
                               fontFamily: "OpenSans",
                               fontSize: Dimensions.height30,
                               fontWeight: FontWeight.w700,
-                              textColor: Dimensions.whiteColor),
+                              textColor: Dimensions.lightGreyColor),
                         ),
                       ],
                     ),
@@ -84,7 +84,7 @@ class Login extends StatelessWidget {
                 ),
               ),
               Expanded(
-                  flex: 4,
+                  flex: 6,
                   child: Container(
                     padding: EdgeInsets.all(Dimensions.height5),
                     child: Form(
@@ -98,9 +98,9 @@ class Login extends StatelessWidget {
                               prefixIcon: Icons.person,
                               textInput: TextInputType.text,
                               controller: stagenameController,
-                              borderColor: Colors.white,
-                              fillColor: Dimensions.greyColor,
-                              textColor: Dimensions.backGroundColor,
+                              borderColor: Dimensions.lightGreyColor,
+                              fillColor: Dimensions.blackColor,
+                              textColor: Dimensions.lightGreyColor,
                               isObsecure: false,
                               validator: valStageName),
                           SizedBox(
@@ -111,7 +111,7 @@ class Login extends StatelessWidget {
                             height: Dimensions.height10,
                           ),
                           PageWidget.materialButton(
-                            bgColor: Dimensions.backGroundColor,
+                            bgColor: Dimensions.purpleColor,
                             onPressed: login,
                             buttonText: "LOGIN",
                             textColor: Dimensions.whiteColor,
@@ -120,10 +120,10 @@ class Login extends StatelessWidget {
                             height: Dimensions.height5,
                           ),
                           PageWidget.materialButton(
-                            bgColor: Dimensions.backGroundColor,
+                            bgColor: Dimensions.blackColor,
                             onPressed: register,
                             buttonText: "Don\'t have an account, Sign Up Here",
-                            textColor: Dimensions.whiteColor,
+                            textColor: Dimensions.lightGreyColor,
                           ),
                         ],
                       ),
@@ -191,7 +191,7 @@ class Login extends StatelessWidget {
                                       textInput: TextInputType.text,
                                       controller: stagenameController,
                                       borderColor: Colors.white,
-                                      fillColor: Dimensions.greyColor,
+                                      fillColor: Dimensions.blackColor,
                                       textColor: Dimensions.backGroundColor,
                                       isObsecure: false),
                                 ),
@@ -240,7 +240,7 @@ class Login extends StatelessWidget {
   login() {
     try {
       if (formKey.currentState!.validate()) {
-        debugPrint("I got up to this pint");
+        const Center(child: CircularProgressIndicator());
         validateStagename();
       } else {
         debugPrint("Form validation not complete");
@@ -267,15 +267,15 @@ class Login extends StatelessWidget {
         obscureText: c.isObsecure.value,
         // keyboardType: TextInputType.none,
         style: TextStyle(
-            fontSize: Dimensions.height15, color: Dimensions.backGroundColor),
+            fontSize: Dimensions.height20, color: Dimensions.lightGreyColor),
         decoration: InputDecoration(
             labelText: "Password",
             labelStyle: TextStyle(
-                color: Dimensions.backGroundColor,
-                fontSize: Dimensions.height15),
+                color: Dimensions.lightGreyColor,
+                fontSize: Dimensions.height13),
             prefixIcon: const Icon(
               Icons.lock,
-              color: Dimensions.blackColor,
+              color: Dimensions.lightGreyColor,
             ),
             suffixIcon: Obx(() => GestureDetector(
                 onTap: () {
@@ -283,28 +283,28 @@ class Login extends StatelessWidget {
                 },
                 child: Icon(
                   c.isObsecure.value ? Icons.visibility_off : Icons.visibility,
-                  color: Dimensions.blackColor,
+                  color: Dimensions.lightGreyColor,
                 ))),
             hintText: "Password...",
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(Dimensions.height25),
-              borderSide: const BorderSide(color: Dimensions.greyColor),
+              borderSide: const BorderSide(color: Dimensions.lightGreyColor),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(Dimensions.height5),
-              borderSide: const BorderSide(color: Dimensions.greyColor),
+              borderRadius: BorderRadius.circular(Dimensions.height25),
+              borderSide: const BorderSide(color: Dimensions.lightGreyColor),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(Dimensions.height5),
-              borderSide: const BorderSide(color: Dimensions.greyColor),
+              borderRadius: BorderRadius.circular(Dimensions.height25),
+              borderSide: const BorderSide(color: Dimensions.lightGreyColor),
             ),
             disabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(Dimensions.height5),
-              borderSide: const BorderSide(color: Dimensions.greyColor),
+              borderRadius: BorderRadius.circular(Dimensions.height25),
+              borderSide: const BorderSide(color: Dimensions.lightGreyColor),
             ),
             contentPadding: EdgeInsets.symmetric(
-                horizontal: Dimensions.width20, vertical: Dimensions.height5),
-            fillColor: Dimensions.greyColor,
+                horizontal: Dimensions.width20, vertical: Dimensions.height20),
+            fillColor: Dimensions.blackColor,
             filled: true),
       ),
     );
@@ -366,5 +366,5 @@ class Login extends StatelessWidget {
     else {
       return null;
     }
-  } //validateName
-}
+  }
+} //validateName

@@ -63,16 +63,16 @@ class HomePage extends StatelessWidget {
                                       textLabel: "WELCOME TO THE PODIUM,",
                                       fontFamily: "OpenSans",
                                       fontSize: Dimensions.height20,
-                                      fontWeight: FontWeight.w900,
-                                      textColor: Dimensions.whiteColor),
+                                      fontWeight: FontWeight.w800,
+                                      textColor: Dimensions.lightGreyColor),
                                   SizedBox(height: Dimensions.height5),
                                   PageWidget.textWidget(
                                       textLabel:
                                           "THE CENTER OF LYRICAL DIVINITIES",
                                       fontFamily: "OpenSans",
                                       fontSize: Dimensions.height20,
-                                      fontWeight: FontWeight.w900,
-                                      textColor: Dimensions.whiteColor),
+                                      fontWeight: FontWeight.w800,
+                                      textColor: Dimensions.lightGreyColor),
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
@@ -81,7 +81,7 @@ class HomePage extends StatelessWidget {
                                         padding: EdgeInsets.only(
                                             top: Dimensions.height20),
                                         child: PageWidget.materialButton(
-                                          bgColor: Dimensions.backGroundColor,
+                                          bgColor: Dimensions.purpleColor,
                                           onPressed: login,
                                           buttonText: "LOGIN",
                                           textColor: Dimensions.whiteColor,
@@ -92,7 +92,7 @@ class HomePage extends StatelessWidget {
                                         padding: EdgeInsets.only(
                                             top: Dimensions.height20),
                                         child: PageWidget.materialButton(
-                                          bgColor: Dimensions.backGroundColor,
+                                          bgColor: Dimensions.purpleColor,
                                           onPressed: register,
                                           buttonText: "REGISTER",
                                           textColor: Dimensions.whiteColor,
@@ -135,10 +135,10 @@ class HomePage extends StatelessWidget {
                                     ],
                                   ),
                                   PageWidget.materialButton(
-                                    bgColor: Dimensions.backGroundColor,
+                                    bgColor: Dimensions.blackColor,
                                     onPressed: tac,
                                     buttonText: "TERMS AND CONDITIONS",
-                                    textColor: Dimensions.whiteColor,
+                                    textColor: Dimensions.lightGreyColor,
                                   ),
                                 ],
                               ),

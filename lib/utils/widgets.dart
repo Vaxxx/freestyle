@@ -26,11 +26,11 @@ class PageWidget {
       controller: controller,
       obscureText: isObsecure,
       keyboardType: textInput,
-      style: TextStyle(fontSize: Dimensions.height10, color: textColor),
+      style: TextStyle(fontSize: Dimensions.height20, color: textColor),
       decoration: InputDecoration(
           labelText: hintText,
           labelStyle:
-              TextStyle(color: textColor, fontSize: Dimensions.height10),
+              TextStyle(color: textColor, fontSize: Dimensions.height13),
           prefixIcon: Icon(
             prefixIcon,
             color: textColor,
@@ -38,22 +38,22 @@ class PageWidget {
           hintText: hintText,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(Dimensions.height25),
-            borderSide: BorderSide(color: borderColor),
+            borderSide: const BorderSide(color: Dimensions.lightGreyColor),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Dimensions.height5),
-            borderSide: BorderSide(color: borderColor),
+            borderRadius: BorderRadius.circular(Dimensions.height25),
+            borderSide: const BorderSide(color: Dimensions.lightGreyColor),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Dimensions.height5),
-            borderSide: BorderSide(color: borderColor),
+            borderRadius: BorderRadius.circular(Dimensions.height25),
+            borderSide: const BorderSide(color: Dimensions.lightGreyColor),
           ),
           disabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Dimensions.height5),
-            borderSide: BorderSide(color: borderColor),
+            borderRadius: BorderRadius.circular(Dimensions.height25),
+            borderSide: const BorderSide(color: Dimensions.lightGreyColor),
           ),
           contentPadding: EdgeInsets.symmetric(
-              horizontal: Dimensions.width20, vertical: Dimensions.height30),
+              horizontal: Dimensions.width20, vertical: Dimensions.height20),
           fillColor: fillColor,
           filled: true),
     );
@@ -66,19 +66,21 @@ class PageWidget {
       required Color textColor}) {
     return Material(
       color: bgColor,
-      borderRadius: BorderRadius.circular(Dimensions.height15),
+      borderRadius: BorderRadius.circular(Dimensions.height20),
       child: InkWell(
         onTap: () => onPressed(),
-        borderRadius: BorderRadius.circular(Dimensions.height20),
+        borderRadius: BorderRadius.circular(Dimensions.height25),
         child: Padding(
-          padding: EdgeInsets.symmetric(
-              vertical: Dimensions.height15, horizontal: Dimensions.width50),
+          padding: EdgeInsets.fromLTRB(Dimensions.width15, Dimensions.height8,
+              Dimensions.width15, Dimensions.height8),
           child: Text(
             buttonText,
+            textAlign: TextAlign.center,
             style: TextStyle(
-                color: textColor,
-                fontSize: Dimensions.height15,
-                fontWeight: FontWeight.w800),
+              color: textColor,
+              fontSize: Dimensions.height15,
+              fontWeight: FontWeight.w800,
+            ),
           ),
         ),
       ),
@@ -93,6 +95,7 @@ class PageWidget {
       required Color textColor}) {
     return Text(
       textLabel,
+      textAlign: TextAlign.center,
       style: TextStyle(
           fontSize: fontSize,
           fontFamily: fontFamily,
@@ -104,8 +107,10 @@ class PageWidget {
   static dropdownWidget(
       {required List<String> items,
       required String title,
-      required List<dynamic>  strings}) {
+      required List<dynamic> strings}) {
     return GFMultiSelect(
+      dropdownBgColor: Dimensions.lightBlackColor,
+      listItemTextColor: Dimensions.lightGreyColor,
       items: items,
       onSelect: (value) {
         if (kDebugMode) {
@@ -114,7 +119,9 @@ class PageWidget {
         }
       },
       dropdownTitleTileText: title,
-      dropdownTitleTileColor: Dimensions.greyColor,
+      dropdownTitleTileColor: Dimensions.lightBlackColor,
+      dropdownTitleTileTextStyle:
+          const TextStyle(color: Dimensions.lightGreyColor),
       dropdownTitleTileMargin: EdgeInsets.only(
           top: Dimensions.height5,
           left: Dimensions.width5,
@@ -123,24 +130,33 @@ class PageWidget {
       dropdownTitleTilePadding: EdgeInsets.all(Dimensions.height5),
       dropdownUnderlineBorder:
           BorderSide(color: Colors.transparent, width: Dimensions.width2),
-      dropdownTitleTileBorder:
-          Border.all(color: Dimensions.greyColor, width: Dimensions.width2),
+      dropdownTitleTileBorder: Border.all(
+          color: Dimensions.lightGreyColor, width: Dimensions.width2),
       dropdownTitleTileBorderRadius: BorderRadius.circular(Dimensions.height5),
       expandedIcon: const Icon(
         Icons.keyboard_arrow_down,
-        color: Dimensions.blackColor,
+        color: Dimensions.lightGreyColor,
       ),
       collapsedIcon: const Icon(
         Icons.keyboard_arrow_up,
-        color: Dimensions.blackColor,
+        color: Dimensions.lightBlackColor,
       ),
-      submitButton: const Text('OK'),
-      dropdownTitleTileTextStyle: TextStyle(
-          fontSize: Dimensions.height15, color: Dimensions.blackColor),
+      cancelButton: const Text(
+        'Cancel',
+        style: TextStyle(
+          color: Dimensions.purpleColor,
+        ),
+      ),
+      submitButton: const Text(
+        'OK',
+        style: TextStyle(
+          color: Dimensions.indigoColor,
+        ),
+      ),
       padding: EdgeInsets.all(Dimensions.height5),
       margin: EdgeInsets.all(Dimensions.height5),
       type: GFCheckboxType.basic,
-      activeBgColor: Dimensions.greenOpacityColor,
+      activeBgColor: Dimensions.lightGreyColor,
       inactiveBorderColor: Dimensions.greyColor,
     );
   }
@@ -180,20 +196,24 @@ class PageWidget {
       required Color borderColor,
       required Color fillColor,
       required Color textColor,
-      TextEditingController? controller,
+      dynamic? errorText,
+      required TextEditingController controller,
       required bool isObsecure,
       int? maxLine}) {
     return TextField(
       // controller: titleController,
+
       onChanged: (val) => val == '' ? valLabel : null,
-      style: TextStyle(fontSize: Dimensions.height10, color: textColor),
+      style: TextStyle(fontSize: Dimensions.height20, color: textColor),
       obscureText: isObsecure == true ? true : false,
-      maxLines: maxLine,
+      maxLines: maxLine == 0 ? 1 : maxLine,
       controller: controller,
+
       decoration: InputDecoration(
           labelText: hintText,
+          errorText: errorText,
           labelStyle:
-              TextStyle(color: textColor, fontSize: Dimensions.height10),
+              TextStyle(color: textColor, fontSize: Dimensions.height15),
           prefixIcon: Icon(
             prefixIcon,
             color: textColor,

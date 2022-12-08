@@ -70,48 +70,56 @@ class Register extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Expanded(
-                flex: 3,
+                flex: 1,
                 child: Center(
                   child: Padding(
                     padding: EdgeInsets.only(top: Dimensions.height50),
                     child: Column(
                       children: [
-                        PageWidget.textWidget(
-                            textLabel: "Freestyle League",
-                            fontFamily: "OpenSans",
-                            fontSize: Dimensions.height40,
-                            fontWeight: FontWeight.w900,
-                            textColor: Dimensions.whiteColor),
+                        // PageWidget.textWidget(
+                        //     textLabel: "Freestyle League",
+                        //     fontFamily: "OpenSans",
+                        //     fontSize: Dimensions.height30,
+                        //     fontWeight: FontWeight.w800,
+                        //     textColor: Dimensions.lightGreyColor),
                         // Image.asset("assets/images/miniLogo.jpg"),
-                        Container(
-                          padding: EdgeInsets.only(top: Dimensions.height20),
-                          child: PageWidget.textWidget(
-                              textLabel: "Sign Up",
-                              fontFamily: "OpenSans",
-                              fontSize: Dimensions.height30,
-                              fontWeight: FontWeight.w900,
-                              textColor: Dimensions.whiteColor),
-                        ),
+                        // Container(
+                        //   padding: EdgeInsets.only(top: Dimensions.height5),
+                        //   child: PageWidget.textWidget(
+                        //       textLabel: "Sign Up",
+                        //       fontFamily: "OpenSans",
+                        //       fontSize: Dimensions.height20,
+                        //       fontWeight: FontWeight.w800,
+                        //       textColor: Dimensions.lightGreyColor),
+                        // ),
                       ],
                     ),
                   ),
                 ),
               ),
               Expanded(
-                flex: 5,
+                flex: 10,
                 child: Form(
                   key: formKey,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  autovalidateMode: AutovalidateMode.disabled,
                   child: Column(
                     children: [
                       SizedBox(
                           height: Dimensions.height20,
                           child: PageWidget.textWidget(
-                              textLabel: "ALMOST THERE!",
+                              textLabel: "Sign Up",
                               fontFamily: 'OpenSans',
                               fontSize: Dimensions.height15,
-                              fontWeight: FontWeight.w700,
+                              fontWeight: FontWeight.w800,
                               textColor: Dimensions.whiteColor)),
+                      SizedBox(
+                          height: Dimensions.height20,
+                          child: PageWidget.textWidget(
+                              textLabel: "ALMOST THERE!",
+                              fontFamily: 'OpenSans',
+                              fontSize: Dimensions.height12,
+                              fontWeight: FontWeight.w700,
+                              textColor: Dimensions.lightGreyColor)),
                       SizedBox(
                         height: Dimensions.height2,
                       ),
@@ -121,31 +129,31 @@ class Register extends StatelessWidget {
                               textLabel:
                                   "Be the first to know and claim 3 months back-stage pass. Fill the form below",
                               fontFamily: 'OpenSans',
-                              fontSize: Dimensions.height10,
+                              fontSize: Dimensions.height15,
                               fontWeight: FontWeight.w500,
-                              textColor: Dimensions.whiteColor)),
+                              textColor: Dimensions.lightGreyColor)),
                       SizedBox(
-                        height: Dimensions.height2,
+                        height: Dimensions.height10,
                       ),
                       SizedBox(
-                        height: Dimensions.height35,
+                        height: Dimensions.height30,
                         child: PageWidget.textFormFieldWidget(
                             valLabel: "Stage Name",
                             validator: stagenameValidator,
                             hintText: "Stage Name",
                             prefixIcon: Icons.person,
-                            borderColor: Colors.white,
                             textInput: TextInputType.text,
-                            fillColor: Dimensions.greyColor,
-                            textColor: Dimensions.backGroundColor,
+                            borderColor: Dimensions.lightGreyColor,
+                            fillColor: Dimensions.blackColor,
+                            textColor: Dimensions.lightGreyColor,
                             controller: stagenameController,
                             isObsecure: false),
                       ),
                       SizedBox(
-                        height: Dimensions.height2,
+                        height: Dimensions.height5,
                       ),
                       SizedBox(
-                        height: Dimensions.height35,
+                        height: Dimensions.height30,
                         child: PageWidget.textFormFieldWidget(
                             valLabel: "Email Address",
                             hintText: "Email Address",
@@ -153,16 +161,16 @@ class Register extends StatelessWidget {
                             controller: emailController,
                             prefixIcon: Icons.email,
                             textInput: TextInputType.emailAddress,
-                            borderColor: Colors.white,
-                            fillColor: Dimensions.greyColor,
-                            textColor: Dimensions.backGroundColor,
+                            borderColor: Dimensions.lightGreyColor,
+                            fillColor: Dimensions.blackColor,
+                            textColor: Dimensions.lightGreyColor,
                             isObsecure: false),
                       ),
                       SizedBox(
-                        height: Dimensions.height2,
+                        height: Dimensions.height5,
                       ),
                       SizedBox(
-                        height: Dimensions.height35,
+                        height: Dimensions.height30,
                         child: PageWidget.textFormFieldWidget(
                             valLabel: "Age",
                             hintText: "Age",
@@ -170,32 +178,32 @@ class Register extends StatelessWidget {
                             prefixIcon: Icons.numbers_outlined,
                             controller: ageController,
                             textInput: TextInputType.number,
-                            borderColor: Colors.white,
-                            fillColor: Dimensions.greyColor,
-                            textColor: Dimensions.backGroundColor,
+                            borderColor: Dimensions.lightGreyColor,
+                            fillColor: Dimensions.blackColor,
+                            textColor: Dimensions.lightGreyColor,
                             isObsecure: false),
                       ),
                       SizedBox(
-                        height: Dimensions.height2,
+                        height: Dimensions.height5,
                       ),
                       SizedBox(
                         height: Dimensions.height30,
                         child: passwordWidget(),
                       ),
                       SizedBox(
-                        height: Dimensions.height2,
+                        height: Dimensions.height5,
                       ),
                       SizedBox(
                         height: Dimensions.height30,
                         child: confirmPasswordWidget(),
                       ),
                       SizedBox(
-                        height: Dimensions.height2,
+                        height: Dimensions.height5,
                       ),
                       SizedBox(
                         height: Dimensions.height50,
                         child: PageWidget.materialButton(
-                          bgColor: Dimensions.backGroundColor,
+                          bgColor: Dimensions.purpleColor,
                           onPressed: register,
                           buttonText: "Sign Up",
                           textColor: Dimensions.whiteColor,
@@ -204,10 +212,10 @@ class Register extends StatelessWidget {
                       SizedBox(
                         height: Dimensions.height50,
                         child: PageWidget.materialButton(
-                          bgColor: Dimensions.backGroundColor,
+                          bgColor: Dimensions.blackColor,
                           onPressed: login,
                           buttonText: "Already have an account?, Sign In Here",
-                          textColor: Dimensions.whiteColor,
+                          textColor: Dimensions.lightGreyColor,
                         ),
                       ),
                     ],
@@ -393,22 +401,22 @@ class Register extends StatelessWidget {
   Obx confirmPasswordWidget() {
     return Obx(
       () => SizedBox(
-        height: Dimensions.height30,
+        height: Dimensions.height35,
         child: TextFormField(
           validator: passwordValidator,
           controller: confirmPasswordController,
           obscureText: c.isObsecureToo.value,
           keyboardType: TextInputType.text,
           style: TextStyle(
-              fontSize: Dimensions.height10, color: Dimensions.backGroundColor),
+              fontSize: Dimensions.height20, color: Dimensions.lightGreyColor),
           decoration: InputDecoration(
               labelText: "Confirm Password",
               labelStyle: TextStyle(
-                  color: Dimensions.backGroundColor,
-                  fontSize: Dimensions.height10),
+                  color: Dimensions.lightGreyColor,
+                  fontSize: Dimensions.height13),
               prefixIcon: const Icon(
-                Icons.lock,
-                color: Dimensions.blackColor,
+                Icons.lock_outline_rounded,
+                color: Dimensions.lightGreyColor,
               ),
               suffixIcon: Obx(() => GestureDetector(
                   onTap: () {
@@ -418,28 +426,29 @@ class Register extends StatelessWidget {
                     c.isObsecureToo.value
                         ? Icons.visibility_off
                         : Icons.visibility,
-                    color: Dimensions.blackColor,
+                    color: Dimensions.lightGreyColor,
                   ))),
               hintText: "Confirm Password...",
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(Dimensions.height25),
-                borderSide: const BorderSide(color: Dimensions.greyColor),
+                borderSide: const BorderSide(color: Dimensions.lightGreyColor),
               ),
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(Dimensions.height5),
-                borderSide: const BorderSide(color: Dimensions.greyColor),
+                borderRadius: BorderRadius.circular(Dimensions.height25),
+                borderSide: const BorderSide(color: Dimensions.lightGreyColor),
               ),
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(Dimensions.height5),
-                borderSide: const BorderSide(color: Dimensions.greyColor),
+                borderRadius: BorderRadius.circular(Dimensions.height25),
+                borderSide: const BorderSide(color: Dimensions.lightGreyColor),
               ),
               disabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(Dimensions.height5),
-                borderSide: const BorderSide(color: Dimensions.greyColor),
+                borderRadius: BorderRadius.circular(Dimensions.height25),
+                borderSide: const BorderSide(color: Dimensions.lightGreyColor),
               ),
               contentPadding: EdgeInsets.symmetric(
-                  horizontal: Dimensions.width20, vertical: Dimensions.height5),
-              fillColor: Dimensions.greyColor,
+                  horizontal: Dimensions.width20,
+                  vertical: Dimensions.height15),
+              fillColor: Dimensions.blackColor,
               filled: true),
         ),
       ),
@@ -449,7 +458,7 @@ class Register extends StatelessWidget {
   Obx passwordWidget() {
     return Obx(
       () => SizedBox(
-        height: Dimensions.height30,
+        height: Dimensions.height35,
         child: TextFormField(
           // controller: titleController,
           validator: passwordValidator,
@@ -458,15 +467,15 @@ class Register extends StatelessWidget {
           obscureText: c.isObsecure.value,
 
           style: TextStyle(
-              fontSize: Dimensions.height10, color: Dimensions.backGroundColor),
+              fontSize: Dimensions.height20, color: Dimensions.lightGreyColor),
           decoration: InputDecoration(
               labelText: "Password",
               labelStyle: TextStyle(
-                  color: Dimensions.backGroundColor,
-                  fontSize: Dimensions.height10),
+                  color: Dimensions.lightGreyColor,
+                  fontSize: Dimensions.height13),
               prefixIcon: const Icon(
                 Icons.lock,
-                color: Dimensions.blackColor,
+                color: Dimensions.lightGreyColor,
               ),
               suffixIcon: Obx(() => GestureDetector(
                   onTap: () {
@@ -476,28 +485,29 @@ class Register extends StatelessWidget {
                     c.isObsecure.value
                         ? Icons.visibility_off
                         : Icons.visibility,
-                    color: Dimensions.blackColor,
+                    color: Dimensions.lightGreyColor,
                   ))),
               hintText: "Password...",
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(Dimensions.height25),
-                borderSide: const BorderSide(color: Dimensions.greyColor),
+                borderSide: const BorderSide(color: Dimensions.lightGreyColor),
               ),
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(Dimensions.height5),
-                borderSide: const BorderSide(color: Dimensions.greyColor),
+                borderRadius: BorderRadius.circular(Dimensions.height25),
+                borderSide: const BorderSide(color: Dimensions.lightGreyColor),
               ),
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(Dimensions.height5),
-                borderSide: const BorderSide(color: Dimensions.greyColor),
+                borderRadius: BorderRadius.circular(Dimensions.height25),
+                borderSide: const BorderSide(color: Dimensions.lightGreyColor),
               ),
               disabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(Dimensions.height5),
-                borderSide: const BorderSide(color: Dimensions.greyColor),
+                borderRadius: BorderRadius.circular(Dimensions.height25),
+                borderSide: const BorderSide(color: Dimensions.lightGreyColor),
               ),
               contentPadding: EdgeInsets.symmetric(
-                  horizontal: Dimensions.width20, vertical: Dimensions.height5),
-              fillColor: Dimensions.greyColor,
+                  horizontal: Dimensions.width20,
+                  vertical: Dimensions.height15),
+              fillColor: Dimensions.blackColor,
               filled: true),
         ),
       ),

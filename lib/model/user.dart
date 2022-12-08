@@ -77,7 +77,7 @@ class Role {
   });
 
   Role.add({required this.name}) {
-    this.name = name;
+    name = name;
   }
 
   int? id;

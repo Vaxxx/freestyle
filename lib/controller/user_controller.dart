@@ -6,13 +6,13 @@ import 'package:freestyle/utils/widgets.dart';
 import 'package:get/get.dart';
 
 class UserController extends GetxController {
-  var isLoading = true.obs;
+  var isLoading = false.obs;
   var isObsecure = true.obs;
   var isObsecureToo = true.obs; //for confirm password
 
   void validateStagenameForLogin(String stagename, User user) async {
     try {
-      isLoading(true);
+      isLoading.value = true;
       var stageName = await UserService.isStageName(stagename);
       // debugPrint("Stage Name: $stageName");
       if ('Stage Name does not exists' == stageName) {
@@ -41,6 +41,7 @@ class UserController extends GetxController {
       required User user,
       required List<Role> roles}) async {
     debugPrint("Nameddddd: $stagename");
+    isLoading.value = true;
     try {
       var stageName = await UserService.isStageName(stagename);
       debugPrint("Stageeee Name: $stageName");
@@ -59,6 +60,7 @@ class UserController extends GetxController {
                 color: Dimensions.blackColor));
       } else if ('Stage Name does not exists' == stageName) {
         registerUser(user, roles);
+        isLoading.value = false;
       }
     } catch (e) {
       debugPrint("Error: $e");
@@ -70,8 +72,8 @@ class UserController extends GetxController {
   } //validateStagenameForLogin
 
   void login(User user) async {
+    isLoading.value = true;
     try {
-      isLoading(true);
       dynamic result = await UserService.loginUser(user);
 
       //   debugPrint("REsult: ${result.id}");
@@ -82,7 +84,7 @@ class UserController extends GetxController {
             Icons.login,
             color: Dimensions.blackColor,
           ));
-
+      isLoading.value = false;
       Get.toNamed("/dashboard");
       //Get.to(() => Dashboard(), arguments: result);
     } catch (e) {

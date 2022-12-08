@@ -52,6 +52,9 @@ class UserService {
         //first declare a variable for the get storage
         final dataValue = GetStorage(); //initialize getStorage
 
+        //store id value
+        dataValue.write('userId', value['id']);
+
         //store email or write email to shared preference
         dataValue.write('email', value['email']);
         //store stagename
